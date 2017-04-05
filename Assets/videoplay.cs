@@ -10,6 +10,12 @@ public class videoplay : MonoBehaviour
     //map
     public Image bg;
 
+    public GameObject panelButton;
+    public GameObject panelText;
+
+    public GameObject videoPanel;
+    public GameObject videoButton;
+
     //Raw Image to Show Video Images [Assign from the Editor]
     public RawImage image;
     //Video To Play [Assign from the Editor]
@@ -30,7 +36,7 @@ public class videoplay : MonoBehaviour
 
         if (Input.GetKeyDown("return") && isSelected == true) {
 
-            Play();
+            ShowPanel();
 
         }
 
@@ -85,6 +91,12 @@ public class videoplay : MonoBehaviour
         StartCoroutine(play());
     }
 
+    public void ShowPanel() {
+
+        videoPanel.SetActive(true);
+
+    }
+
     IEnumerator play()
     {
         transform.SetAsLastSibling();
@@ -96,6 +108,12 @@ public class videoplay : MonoBehaviour
 
         //Play Sound
         audioSource.Play();
+
+        videoButton.SetActive(true);
+
+        panelButton.SetActive(false);
+        
+        panelText.SetActive(false);
 
         Debug.Log("Playing Video");
 
@@ -118,6 +136,14 @@ public class videoplay : MonoBehaviour
     public void CloseVideo() {
 
         bg.enabled = true;
+
+        videoPanel.SetActive(false);
+
+        videoButton.SetActive(false);
+
+        panelButton.SetActive(true);
+        
+        panelText.SetActive(true);
 
         //Play Video
         videoPlayer.Stop();
