@@ -104,6 +104,11 @@ public class videoplay : MonoBehaviour
             //Debug.LogWarning("Video Time: " + Mathf.FloorToInt((float)videoPlayer.time));
             yield return null;
         }
+        if (videoPlayer.isPlaying == false) {
+            
+            CloseVideo();
+
+        }
 
         transform.SetAsFirstSibling();
 
