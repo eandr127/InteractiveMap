@@ -7,6 +7,9 @@ using UnityEngine.Video;
 public class videoplay : MonoBehaviour
 {
 
+    //map
+    public Image bg;
+
     //Raw Image to Show Video Images [Assign from the Editor]
     public RawImage image;
     //Video To Play [Assign from the Editor]
@@ -15,10 +18,23 @@ public class videoplay : MonoBehaviour
     private VideoPlayer videoPlayer;
     private VideoSource videoSource;
 
+    //is this selected by the arrow keys?
+    public bool isSelected;
+
     //Audio
     private AudioSource audioSource;
 
     // Use this for initialization
+
+    void Update() {
+
+        if (Input.GetKeyDown("return") && isSelected == true) {
+
+            Play();
+
+        }
+
+    }
     void Start()
     {
         Application.runInBackground = true;
@@ -42,8 +58,6 @@ public class videoplay : MonoBehaviour
 
         //Set Audio Output to AudioSource
         videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
-
-        videoPlayer.aspectRatio = VideoAspectRatio.NoScaling;
 
         //Assign the Audio from Video to AudioSource to be played
         videoPlayer.EnableAudioTrack(0, true);
@@ -75,6 +89,8 @@ public class videoplay : MonoBehaviour
     {
         transform.SetAsLastSibling();
 
+        bg.enabled = false;
+
         //Play Video
         videoPlayer.Play();
 
@@ -82,14 +98,29 @@ public class videoplay : MonoBehaviour
         audioSource.Play();
 
         Debug.Log("Playing Video");
+
         while (videoPlayer.isPlaying)
         {
-            Debug.LogWarning("Video Time: " + Mathf.FloorToInt((float)videoPlayer.time));
+            //Debug.LogWarning("Video Time: " + Mathf.FloorToInt((float)videoPlayer.time));
             yield return null;
         }
 
         transform.SetAsFirstSibling();
 
         Debug.Log("Done Playing Video");
+    }
+
+    public void CloseVideo() {
+
+        bg.enabled = true;
+
+        //Play Video
+        videoPlayer.Stop();
+
+        //Play Sound
+        audioSource.Stop();
+
+        Debug.Log("Video stopped.");
+
     }
 }
