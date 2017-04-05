@@ -15,11 +15,19 @@ public class KeyDetector : MonoBehaviour {
 
 			currentSelection--;
 
+			if (currentSelection < 0) {
+
+				currentSelection = 0;
+
+			}
+
 			videos[currentSelection].GetComponent<videoplay>().isSelected = true;
 
 			buttons[currentSelection].transform.FindChild("arrow").gameObject.SetActive(true);
 
 			videos[currentSelection + 1].GetComponent<videoplay>().isSelected = false;
+
+			videos[currentSelection + 1].GetComponent<videoplay>().CloseVideo();
 
 			buttons[currentSelection + 1].transform.FindChild("arrow").gameObject.SetActive(false);
 
@@ -27,11 +35,19 @@ public class KeyDetector : MonoBehaviour {
 
 			currentSelection++;
 
+			if (currentSelection > 4) {
+
+				currentSelection = 4;
+				
+			}
+
 			videos[currentSelection].GetComponent<videoplay>().isSelected = true;
 
 			buttons[currentSelection].transform.FindChild("arrow").gameObject.SetActive(true);
 
 			videos[currentSelection - 1].GetComponent<videoplay>().isSelected = false;
+
+			videos[currentSelection - 1].GetComponent<videoplay>().CloseVideo();
 
 			buttons[currentSelection - 1].transform.FindChild("arrow").gameObject.SetActive(false);
 
