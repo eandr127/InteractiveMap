@@ -35,9 +35,9 @@ public class KeyDetector : MonoBehaviour {
 
 			currentSelection++;
 
-			if (currentSelection > 4) {
+			if (currentSelection > 5) {
 
-				currentSelection = 4;
+				currentSelection = 5;
 				
 			}
 
@@ -60,6 +60,7 @@ public class KeyDetector : MonoBehaviour {
 			videos[2].GetComponent<videoplay>().CloseVideo();
 			videos[3].GetComponent<videoplay>().CloseVideo();
 			videos[4].GetComponent<videoplay>().CloseVideo();
+            videos[5].GetComponent<videoplay>().CloseVideo();
 			
 		}
 	}
