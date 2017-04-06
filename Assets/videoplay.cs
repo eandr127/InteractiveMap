@@ -92,7 +92,7 @@ public class videoplay : MonoBehaviour
     }
 
     public void ShowPanel() {
-
+        videoButton.SetActive(true);
         videoPanel.SetActive(true);
 
     }
@@ -109,11 +109,8 @@ public class videoplay : MonoBehaviour
         //Play Sound
         audioSource.Play();
 
-        videoButton.SetActive(true);
-
-        panelButton.SetActive(false);
-        
         panelText.SetActive(false);
+        panelButton.SetActive(false);
 
         Debug.Log("Playing Video");
 
@@ -129,6 +126,9 @@ public class videoplay : MonoBehaviour
         }
 
         transform.SetAsFirstSibling();
+
+        videoButton.SetActive(true);
+        videoButton.transform.SetAsLastSibling();
 
         Debug.Log("Done Playing Video");
     }
